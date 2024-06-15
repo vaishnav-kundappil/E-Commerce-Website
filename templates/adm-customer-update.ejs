@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Update Customer</title>
+
+
+    <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.css">
+    <link href="../public/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="../stylesheet" type="text/css" href="../public/css/design.css">
+
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/jquery.dataTables.min.js"></script>
+    <script src="../public/js/dataTables.bootstrap4.min.js"></script>
+
+</head>
+
+<body>
+    <%- include('common/customer-header')%>
+
+
+<div class="container mt-5 w-50">
+
+    <h2 class="mb-4">Update Customer</h2>
+
+    <form action="/edit-cust/<%= x.email%>?_method=put" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+
+        <input type="text" value="<%= x.name%>" name="name" class="form-control" placeholder="Customer Name">
+
+        <input type="text" value="<%= x.password%>" name="password" class="form-control" placeholder="Password">
+
+        <input type="text" value="<%= x.email%>" name="email" class="form-control" placeholder="Email">
+
+        <button type="submit" class="btn btn-danger btn-block mt-3">Update Customer</button>
+
+    </form>
+</div>
+
+<%- include('common/footer') %>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Employee Database System</title>
+      <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.css">
+      <link href="../public/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+      <link rel="../stylesheet" type="text/css" href="../public/css/design.css">
+  
+      <script src="../public/js/jquery.min.js"></script>
+      <script src="../public/js/jquery.dataTables.min.js"></script>
+      <script src="../public/js/dataTables.bootstrap4.min.js"></script>
+      <%- include('common/adm-prod-header')%>
+      <div class="container mt-5 w-50">
+         <h2 class="mb-4">Search Product</h2>
+        
+         <form action="/searchprod" method="GET">
+            <input type="text" name="prod_name" class="form-control" placeholder="product name">
+            <button type="submit" class="btn btn-danger btn-block mt-3">Search in Database</button>
+         </form>
+
+
+         <%if(x){%>
+
+      
+            <h4 class="text-danger my-4">Search Results: </h4>
+            <table class="table table-bordered" width="100%" cellspacing="0">
+               <thead>
+                  <tr>
+                     <td><%= x.id%></td>
+                     <td><%= x.prod_name%></td>
+                     <td><%= x.category%></td>
+                     <td><%= x.price%></td>
+                  </tr>
+               </thead>
+           
+            </table>
+         </div>
+         <%}%>
+   
+         <%- include('common/footer') %>

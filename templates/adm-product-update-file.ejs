@@ -1,0 +1,46 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Database System</title>
+
+
+    <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.css">
+    <link href="../public/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="../stylesheet" type="text/css" href="../public/css/design.css">
+
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/jquery.dataTables.min.js"></script>
+    <script src="../public/js/dataTables.bootstrap4.min.js"></script>
+
+</head>
+
+<body>
+    <%- include('common/adm-prod-header')%>
+
+
+<div class="container mt-5 w-50">
+
+    <h2 class="mb-4">Update Product Data</h2>
+
+    <form action="/edit1/<%= x.id%>?_method=put" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="PUT">
+        
+        <input type="text" value="<%= x.id%>" name="id" class="form-control" placeholder="product id">
+
+        <input type="text" value="<%= x.prod_name%>" name="prod_name" class="form-control" placeholder="product name">
+
+        <input type="text" value="<%= x.category%>" name="category" class="form-control" placeholder="product category">
+
+        <input type="text" value="<%= x.price%>" name="price" class="form-control" placeholder="product price">
+
+        <input type="file" name="image" class="form-control">
+
+        <button type="submit" class="btn btn-danger btn-block mt-3">Update Product</button>
+
+    </form>
+</div>
+
+<%- include('common/footer') %>

@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>add product</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link href="/css/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/design.css">
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap4.min.js"></script> -->
+
+
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link href="/css/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/design.css">
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap4.min.js"></script>
+
+</head>
+<%- include('common/transac-header')%>
+<%if(sucess  && sucess != ''){%>
+    <div class="alert alert-success" role="alert">
+      <%=sucess%>
+     </div>
+     <%}else if(err && err != ''){%>
+       <div class="alert alert-danger" role="alert">
+          <%=err%>
+       <%}%>
+<body>
+    
+
+
+<div class="container mt-5 w-50">
+
+    <h2 class="mb-4">Add Product</h2>
+
+    <form action="/<%= details.email%>/add-transaction/<%= x.id%>" method="post">
+        
+        <input type="text" value="<%= x.id%>" name="id" class="form-control" placeholder="product id">
+
+        <input type="text" value="<%= x.prod_name%>" name="prod_name" class="form-control" placeholder="product name">
+
+        <input type="text" value="<%= x.category%>" name="category" class="form-control" placeholder="product category">
+
+        <input type="text" value="<%= x.price%>" name="price" class="form-control" placeholder="product price">
+
+        <input type="text" value="<%= details.email%>" name="email" class="form-control" placeholder="email" readonly>
+
+        <input type="text" value="" name="count" class="form-control" placeholder="count">
+
+        <input type="text" value="" name="name" class="form-control" placeholder="name">
+
+        <input type="text" value="" name="address" class="form-control" placeholder="address">
+
+        <!-- <button type="submit" class="btn btn-danger btn-block mt-3">Add to transaction</button> -->
+        <!-- <div style="text-align: right ;margin-top: -3.3%;margin-right:1.5%"> -->
+            <a href="/product/<%= details.email%>">
+            <button type="submit" class="btn btn-primary btn-block mt-3">add</button>
+            </a>
+            <!-- </div> -->
+    </form>
+</div>
+
+<%- include('common/footer') %>

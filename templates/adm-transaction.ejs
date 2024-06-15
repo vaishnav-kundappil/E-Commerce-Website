@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Transaction Database</title>
+      <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.css">
+      <link href="../public/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+      <link rel="../stylesheet" type="text/css" href="../public/css/design.css">
+  
+      <script src="../public/js/jquery.min.js"></script>
+      <script src="../public/js/jquery.dataTables.min.js"></script>
+      <script src="../public/js/dataTables.bootstrap4.min.js"></script>
+   </head>
+
+   <%- include('common/transac-header') %>
+      <div class="container mt-5">
+         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+               <tr>
+                  <th>Product ID</th>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Email</th>
+                  <th>Count</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Status</th>
+
+               </tr>
+               
+            <tbody>
+               <% x.forEach((y)=>{%>
+
+
+                  <tr>
+                     <td><%= y.id%></td>
+                     <td><%= y.prod_name%></td>
+                     <td><%= y.category%></td>
+                     <td><%= y.price%></td>
+                     <td><%= y.email%></td>
+                     <td><%= y.count%></td>
+                     <td><%= y.name%></td>
+                     <td><%= y.address%></td>
+                     <td>
+                        paid
+                     </td>
+                  </tr>
+                  <%})%>
+                           </tbody>
+            </thead>
+
+
+    
+         </table>
+      </div>
+
+      <div style="text-align: right ;margin-top: -3.3%;margin-right:1.5%">
+         <a href="/adm-home">
+         <button class="go-btn">Back</button>
+         </a>
+         </div>
+
+      <%- include('common/footer') %>
+</html>

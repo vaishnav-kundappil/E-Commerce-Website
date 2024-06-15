@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Product Database System</title>
+      <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.css">
+      <link href="../public/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+      <link rel="../stylesheet" type="text/css" href="../public/css/design.css">
+  
+      <script src="../public/js/jquery.min.js"></script>
+      <script src="../public/js/jquery.dataTables.min.js"></script>
+      <script src="../public/js/dataTables.bootstrap4.min.js"></script>
+   </head>
+   <%- include('common/adm-prod-header')%>
+   <%if(sucess  && sucess != ''){%>
+      <div class="alert alert-success" role="alert">
+        <%=sucess%>
+       </div>
+       <%}else if(err && err != ''){%>
+         <div class="alert alert-danger" role="alert">
+            <%=err%>
+         <%}%>
+      <div class="container mt-5">
+         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+               <tr>
+                  <th>Image</th>
+                  <th>Product ID</th>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Operations</th>
+               </tr>
+            </thead>
+
+            <tbody>
+               <% x.forEach((y)=>{%>
+
+
+                  <tr>
+                     <td>
+                        <%if(y.image){%>
+                           <img src="/images/<%= y.image%>" width="100">
+                        <%}else{%>
+                           <img src="/images/no-image.png" width="100">
+                        <%}%>
+                     </td>
+                     <td><%= y.id%></td>
+                     <td><%= y.prod_name%></td>
+                     <td><%= y.category%></td>
+                     <td><%= y.price%></td>
+                     <td>
+                        <a class="btn btn-primary" href="/edit1/<%= y.id%>">Edit</a>
+                        
+                        <form style="display: inline;" action="/delete1/<%= y.id%>?_method=DELETE" method="POST">
+                          
+                           <button style="cursor: pointer;" type="submit" class="btn btn-danger ml-2">Delete</button>
+                        </form>
+                     </td>
+                  </tr>
+                  <%})%>
+                           </tbody>
+   
+         </table>
+      </div>
+
+      <div style="text-align: right ;margin-top: -3.3%;margin-right:1.5%">
+         <a href="/adm-home">
+         <button class="go-btn">Back</button>
+         </a>
+         </div>
+
+      <%- include('common/footer') %>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      /* background: rgb(36,198,224);
+      background: linear-gradient(90deg, rgba(36,198,224,1) 2%, rgba(29,130,215,1) 36%, rgba(64,56,180,1) 84%, rgba(136,0,255,1) 100%); */
+      
+    }
+
+    h1 {
+      text-align: center;
+      color: #333333;
+      padding: 20px 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+    }
+
+    input[type="date"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      height: 100px;
+    }
+
+    input[type="submit"] {
+      background-color: #333333;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #555555;
+    }
+
+    /* Payment form styles */
+    .payment-form {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .payment-form.show {
+      display: block;
+    }
+
+    .payment-methods {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .payment-methods label {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    .payment-methods input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .go-back-btn {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .back-btn{
+        display: block;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .image img{
+        display: inline-flex;
+        vertical-align: top;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        margin-left: 10%;
+        margin-top: 15px; 
+        opacity: 90%;  
+        border:1px solid black;
+        border-radius: 50px;
+    }
+    .containerr {
+        width: 10%;
+        align-items: center;
+        justify-content: center;
+    }
+    .textt {
+        position: absolute;
+        margin-left:5.5%;
+        margin-top:-5%;
+    }
+    .go-btn{
+        background-color: #f5f6f8;
+        border-radius: 5px; 
+        border: none;
+        padding: 9px 10px; 
+        font-size: 14px; 
+        cursor: pointer; 
+ }
+ .go-btn:hover{
+        color:black;
+        transition: 0.7;
+ }
+ .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+  }
+
+  .textt h1{
+    font-size: 32px;
+  }
+
+  .backk{
+    text-align: right;
+    margin-top: -3.3%;
+    margin-right:1.5%;
+  }
+</style>
+</head>
+<body>
+    <!-- <div class="containerr">
+        <div class="image">
+          <img src="/css/images/logo.jfif">
+        </div>
+        <div class="textt">
+            <h1>Travel</h1>
+        </div>
+    </div> -->
+    <div class="back">
+        <a href="">
+            <button class="go-btn">Back</button>
+        </a>
+    </div>
+  <h1>Payment</h1>
+  <div class="container">
+    <form id="booking-form" action="/pay/<%=details.email%>" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="<%=details.name%>" required>
+        <div class="error-message" id="nameError"></div>
+      </div>
+      <label for="prodid">Product ID</label>
+      <input type="text" id="prodid" name="prodid" value="<%=check.id%>" required>
+      <div class="error-message" id="nameError"></div>
+    
+    <label for="prodname">Product Name</label>
+    <input type="text" id="prodname" name="prodname" value="<%=check.prod_name%>" required>
+    <div class="error-message" id="nameError"></div>
+  
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="<%=details.email%>" readonly>
+        <div class="error-message" id="emailError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="count">Count</label>
+        <input type="text" id="count" name="count" value="<%=check.count%>" required>
+        <div class="error-message" id="nameError"></div>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="text" id="price" name="price" value="<%=check.price%>" required>
+        <div class="error-message" id="nameError"></div>
+  
+        <div class="form-group">
+          <label for="amount">Total Amount</label>
+          <input type="text" name="result" class="form-control" id="result" readonly>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="button" onclick="calculates()" value="Get Total Amount"><br>
+            <!-- <input type="radio" name="payment-method" value="paytm" oninput="calculates()" checked> -->
+            Scan and Pay
+          </label>
+        <div class="form-group" >
+          <img width="100px"  src="/images/qr.png">
+        </div>
+        <div class="mb-3 form-group">
+          <label for="paytm-amount">Payment Screenshot</label>
+          <input type="file" name="image" class="form-control" >
+        </div>
+        <div class="form-group">
+          <label for="paytm-amount">Transaction ID</label>
+          <input type="text" name="id" id="id1" class="form-control" >
+        </div>
+       
+        <div class="form-group">
+          <input type="submit" value="confirm Payment" >
+        </div>
+        
+       </form>
+    </div>
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+function calculates() {
+     //  var email = document.getElementById('name').value; 
+        var count =  document.getElementById('count').value; 
+        var price =  document.getElementById('price').value;        
+
+        var myResult = count * price;
+        // console.log(myResult);
+          document.getElementById('result').value = myResult;
+   
+        //    row1.innerHTML = email;
+        //    row2.innerHTML = count;
+        //    row3.innerHTML = myBox;
+        //    row4.innerHTML = price+"rs";
+        //   // row5.innerHTML = phone;
+        //    row5.innerHTML = amount+"rs";
+        //    row6.innerHTML = di;
+
+    }
+
+
+     function calculate() {
+       var myBox1 = document.getElementById('price').value;
+      var row1 = document.getElementById('row1'); 
+             row1.innerHTML = myBox1;
+     }
+
+    //         // Get form inputs and next button
+    // const form = document.getElementById("booking-form");
+    // const nameInput = document.getElementById("name");
+    // const emailInput = document.getElementById("email");
+    // const phoneInput = document.getElementById("phone");
+    // const destinationsInput = document.getElementById("destinations");
+    // const dateInput = document.getElementById("date");
+    // const daysInput = document.getElementById("days");
+    // const seatsInput = document.getElementById("seats");
+    // const nextBtn = document.getElementById("nextBtn");
+    // const amountInput= document.getElementById("amount");
+
+    // // Add event listeners for input changes
+    // nameInput.addEventListener("input", validateForm);
+    // emailInput.addEventListener("input", validateForm);
+    // phoneInput.addEventListener("input", validateForm);
+    // destinationsInput.addEventListener("input", validateForm);
+    // dateInput.addEventListener("input", validateForm);
+    // daysInput.addEventListener("input", validateForm);
+    // seatsInput.addEventListener("input", validateForm);
+    // amountInput.addEventListener("input", validateForm);
+
+
+
+    // function validateForm() {
+    //   // Validate inputs
+    //   const name = nameInput.value.trim();
+    //   const email = emailInput.value.trim();
+    //   const phone = phoneInput.value.trim();
+    //   const destinations = destinationsInput.value.trim();
+    //   const date = dateInput.value.trim();
+    //   const days = daysInput.value.trim();
+    //   const seats = seatsInput.value.trim();
+    
+    //   // Validate name input
+    //   if (name === "") {
+    //     nameInput.classList.add("invalid");
+    //     document.getElementById("nameError").textContent = "Name is required";
+    //   } else {
+    //     nameInput.classList.remove("invalid");
+    //     document.getElementById("nameError").textContent = "";
+    //   }
+
+    //   // Validate email input
+    //   if (email === "") {
+    //     emailInput.classList.add("invalid");
+    //     document.getElementById("emailError").textContent = "Email is required";
+    //   } else {
+    //     emailInput.classList.remove("invalid");
+    //     document.getElementById("emailError").textContent = "";
+    //   }
+
+    //   // Validate phone input
+    //   if (phone === "") {
+    //     phoneInput.classList.add("invalid");
+    //     document.getElementById("phoneError").textContent = "Phone is required";
+    //   } else {
+    //     phoneInput.classList.remove("invalid");
+    //     document.getElementById("phoneError").textContent = "";
+    //   }
+
+    //   // Validate destination input
+    //   if (destinations === "") {
+    //     destinationsInput.classList.add("invalid");
+    //     document.getElementById("destinationsError").textContent = "destinations is required";
+    //   } else {
+    //     destinationsInput.classList.remove("invalid");
+    //     document.getElementById("destinationsError").textContent = "";
+    //   }
+
+    //   // Validate date input
+    //   if (date === "") {
+    //     dateInput.classList.add("invalid");
+    //     document.getElementById("dateError").textContent = "date is required";
+    //   } else {
+    //     dateInput.classList.remove("invalid");
+    //     document.getElementById("dateError").textContent = "";
+    //   }
+
+    //   // Validate days input
+    //   if (days === "") {
+    //     daysInput.classList.add("invalid");
+    //     document.getElementById("daysError").textContent = "Days are required";
+    //   } else {
+    //     daysInput.classList.remove("invalid");
+    //     document.getElementById("daysError").textContent = "";
+    //   }
+
+    //   // Validate passengers input
+
+    //   if (seats === "") {
+    //     seatsInput.classList.add("invalid");
+    //     document.getElementById("seatsError").textContent = "seats are required";
+    //   } else {
+    //     seatsInput.classList.remove("invalid");
+    //     document.getElementById("seatsError").textContent = "";
+    //   }
+    // }
+
+    // function calculateAmount() {
+    //   var seats = parseInt(document.getElementById('seats').value);
+    //   var days = parseInt(document.getElementById('days').value);
+    //   var amount = seats * days * 1000; // Assuming the price per seat per day is $10
+    //   document.getElementById('amount').value = amount;
+    //   document.getElementById('payment-amount').value = amount;
+
+    // }
+
+    // // Listen for input changes and validate the form
+    // document.getElementById('booking-form').addEventListener('input', function() {
+    //   validateForm();
+    //   calculateAmount();
+    // });
+
+    //   function showPaymentForm() {
+    //     if (form.checkValidity()) {
+    //     nextBtn.classList.add("active");
+    //     nextBtn.removeAttribute("disabled");
+    
+    //     var bookingForm = document.getElementById("booking-form");
+    //     var paymentForm = document.getElementById("payment-form");
+    //     paymentForm.classList.add("show");
+    //     bookingForm.style.display = "none";
+    //     }
+    //     else {
+    //        paymentForm.classList.add("show");
+    //     bookingForm.style.display = "none";
+    //    // nextButton.classList.remove("active");
+    //   //  nextButton.setAttribute("disabled", "disabled");
+    //     }
+
+    //   }
+      
+  
+    //   function submitPaytmForm() {
+    //     var name = document.getElementById("name").value;
+    //     var email = document.getElementById("email").value;
+    //     var phone = document.getElementById("phone").value;
+    //     var amount = document.getElementById("paytm-amount").value;
+  
+    //     // Make an AJAX request to your server to generate the Paytm payment request
+    //     $.ajax({
+    //       url: "your-server-url-for-paytm-payment",
+    //       type: "POST",
+    //       data: {
+    //         name: name,
+    //         email: email,
+    //         phone: phone,
+    //         amount: amount
+    //       },
+    //       success: function(response) {
+    //         // Redirect the user to the Paytm payment gateway with the generated payment request
+    //         window.location.href = response.paytm_payment_url;
+    //     },
+    //     error: function(error) {
+    //       // Handle error response
+    //       console.log(error);
+    //     }
+        
+    //   });
+    // }
+
+  </script>
+</body>
+</html>

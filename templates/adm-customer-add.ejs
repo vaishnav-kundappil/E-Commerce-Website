@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Add Customer</title>
+      <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.css">
+      <link href="../public/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+      <link rel="../stylesheet" type="text/css" href="../public/css/design.css">
+  
+      <script src="../public/js/jquery.min.js"></script>
+      <script src="../public/js/jquery.dataTables.min.js"></script>
+      <script src="../public/js/dataTables.bootstrap4.min.js"></script>   
+      <%- include('common/customer-header')%>
+      <div class="container mt-5 w-50">
+         <h2 class="mb-4">Add New Customer</h2>
+         <form action="/customer-add" method="post">
+            <input type="text" name="name" class="form-control" placeholder="Customer Name">
+            <input type="text" name="password" class="form-control" placeholder="Password">
+            <input type="text" name="email" class="form-control" placeholder="Email">
+            <button type="submit" class="btn btn-danger btn-block mt-3">Add to Database</button>
+         </form>
+      </div>
+      <%- include('common/footer') %>
